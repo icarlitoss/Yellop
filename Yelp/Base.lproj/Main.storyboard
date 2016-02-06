@@ -161,7 +161,7 @@
         <!--Filters-->
         <scene sceneID="j8x-Nd-0gw">
             <objects>
-                <viewController id="60w-92-Atw" sceneMemberID="viewController">
+                <viewController id="60w-92-Atw" customClass="FiltersViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jwN-Rf-U5t"/>
                         <viewControllerLayoutGuide type="bottom" id="fU5-Sx-2oJ"/>
@@ -215,9 +215,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Filters" id="JfE-cZ-LkI">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="UlH-wy-0TE"/>
-                        <barButtonItem key="rightBarButtonItem" title="Search" id="bjE-Tk-6bp"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="UlH-wy-0TE">
+                            <connections>
+                                <action selector="onCancelButton:" destination="60w-92-Atw" id="dfH-Nv-UsO"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Search" id="bjE-Tk-6bp">
+                            <connections>
+                                <action selector="onSearchButton:" destination="60w-92-Atw" id="9pF-Gm-1XJ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="b9S-8K-nof" id="ZnC-YU-PnE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wo3-Bn-3A4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
