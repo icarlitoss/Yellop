@@ -181,19 +181,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="74.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dO0-9A-Sgd">
+                                                    <rect key="frame" x="263" y="22" width="51" height="31"/>
+                                                </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oce-Eh-vMA">
-                                                    <rect key="frame" x="8" y="27" width="132" height="21"/>
+                                                    <rect key="frame" x="8" y="27" width="42" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dO0-9A-Sgd">
-                                                    <rect key="frame" x="258" y="21" width="51" height="31"/>
-                                                </switch>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="dO0-9A-Sgd" firstAttribute="centerY" secondItem="mHN-kr-21n" secondAttribute="centerY" id="BLA-9D-mdD"/>
-                                                <constraint firstItem="dO0-9A-Sgd" firstAttribute="trailing" secondItem="mHN-kr-21n" secondAttribute="trailingMargin" constant="13" id="Zq7-vp-sZx"/>
+                                                <constraint firstItem="dO0-9A-Sgd" firstAttribute="trailing" secondItem="mHN-kr-21n" secondAttribute="trailingMargin" id="Zq7-vp-sZx"/>
                                                 <constraint firstItem="Oce-Eh-vMA" firstAttribute="centerY" secondItem="mHN-kr-21n" secondAttribute="centerY" id="dwY-VB-GN1"/>
                                                 <constraint firstItem="Oce-Eh-vMA" firstAttribute="leading" secondItem="mHN-kr-21n" secondAttribute="leading" constant="14" id="mFo-pN-gHB"/>
                                             </constraints>
