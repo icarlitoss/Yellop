@@ -8,10 +8,9 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var businesses: [Business]!
-    var businessesBackup: [Business]!
     var searchBar: UISearchBar!
     
     var refreshControl: UIRefreshControl!
@@ -49,15 +48,10 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        searchBar = UISearchBar()
-        searchBar.sizeToFit()
-        navigationItem.titleView = searchBar
         
         
         tableView.delegate = self
         tableView.dataSource = self
-        searchBar.delegate = self
-        
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
@@ -115,37 +109,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     
-    
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        if(businessesBackup == nil) {
-            businessesBackup = businesses
-        } else {
-            businesses = businesses.filter({(dataItem: Business) -> Bool in
-                
-                if dataItem.name!.rangeOfString(searchText, options: .CaseInsensitiveSearch) != nil {
-                    return true
-                } else {
-                    return false
-                }
-        })
-    }
-    
-        tableView.reloadData()
-        
-    }
-    
-    
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        self.searchBar.showsCancelButton = true
-    }
-    
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        searchBar.showsCancelButton = false
-        searchBar.text = ""
-        searchBar.resignFirstResponder()
-    }
-  
+
     
     
     
