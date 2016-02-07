@@ -40,6 +40,8 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories.count
     }
