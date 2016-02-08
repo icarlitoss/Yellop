@@ -8,11 +8,18 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
 
     var businesses: [Business]!
-    var searchBar: UISearchBar!
     
+    var businessesBackUp: [Business]?
+    
+    var searchController: UISearchController!
+    
+    var searchKey: String!
+    
+    
+    //refresh
     var refreshControl: UIRefreshControl!
     
     
@@ -56,24 +63,36 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
         
-      
+        
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.sizeToFit()
+        
+        navigationItem.titleView = searchController.searchBar
+        searchController.hidesNavigationBarDuringPresentation = false
+        definesPresentationContext = true
+        
         pullToRefreshControl()
+      
+       
         
-        Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
+        func fetchFoodData() {
+            Business.searchWithTerm("Peruvian", completion: { (businesses: [Business]!, error: NSError!) -> Void in
+                self.businesses = businesses
+                self.tableView.reloadData()
+                
+                for business in businesses {
+                    print(business.name!)
+                    print(business.address!)
+                }
+            })
             
-            
-            
-            
-            
-            self.tableView.reloadData()
         
-            for business in businesses {
-                print(business.name!)
-                print(business.address!)
-            }
-        })
-
+        }
+        
+        
+        fetchFoodData()
 /* Example of Yelp search with more search options specified
         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
@@ -110,7 +129,22 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     
     
 
-    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        if businessesBackUp == nil {
+            businessesBackUp = businesses
+        }
+        if let searchText = searchController.searchBar.text {
+            if(searchText == "") {
+                businesses = businessesBackUp
+                tableView.reloadData()
+            } else {
+                businesses = searchText.isEmpty ? businesses : businesses?.filter({ (business:Business) -> Bool in
+                    business.name!.rangeOfString(searchText, options: .CaseInsensitiveSearch) != nil
+                });
+                tableView.reloadData()
+            }
+        }
+    }
     
     
     
